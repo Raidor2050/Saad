@@ -42,6 +42,8 @@ export default function FamilyGraph() {
       const xSpacing = 300;
       const x = count * xSpacing - ((total - 1) * xSpacing) / 2;
 
+      const isCandidate = person.dataSource === "discovered" || person.dataSource === "candidate";
+
       nodes.push({
         id: person.id,
         type: "personNode",
@@ -50,6 +52,7 @@ export default function FamilyGraph() {
           person,
           isSelected: person.id === selectedPersonId,
           isHighlighted: person.id === highlightedPersonId,
+          isCandidate,
           onSelect: () => {
             setSelectedPerson(person.id === selectedPersonId ? null : person.id);
           },
@@ -62,8 +65,6 @@ export default function FamilyGraph() {
     });
 
     relationships.forEach((rel) => {
-      const fromGen = people.find((p) => p.id === rel.fromPersonId)?.generation;
-      const toGen = people.find((p) => p.id === rel.toPersonId)?.generation;
       const isHighlighted =
         rel.fromPersonId === highlightedPersonId ||
         rel.toPersonId === highlightedPersonId;
@@ -109,11 +110,26 @@ export default function FamilyGraph() {
             Interactive <span className="gold-text">Family Graph</span>
           </h2>
           <p className="text-sm text-mist max-w-xl mx-auto">
-            Explore the direct ancestral line. Click any person to see details and evidence.
+            Explore the direct ancestral line and related Talukder families discovered through OSINT research. Click any person to see details and evidence.
           </p>
         </div>
 
-        <div className="glass-panel overflow-hidden" style={{ height: "600px" }}>
+        <div className="flex flex-wrap items-center justify-center gap-3 mb-4 text-xs">
+          <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-gold-500/10 border border-gold-500/20">
+            <div className="w-2 h-2 rounded-full bg-gold-400" />
+            <span className="text-gold-400">Direct Ancestry (Verified)</span>
+          </div>
+          <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-blue-500/10 border border-blue-500/20">
+            <div className="w-2 h-2 rounded-full bg-blue-400" />
+            <span className="text-blue-400">Related Talukders (Discovered)</span>
+          </div>
+          <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-purple-500/10 border border-purple-500/20">
+            <div className="w-2 h-2 rounded-full bg-purple-400" />
+            <span className="text-purple-400">Historical Context</span>
+          </div>
+        </div>
+
+        <div className="glass-panel overflow-hidden" style={{ height: "700px" }}>
           <ReactFlow
             nodes={nodes}
             edges={edges}
@@ -145,12 +161,29 @@ export default function FamilyGraph() {
             <div className="flex items-start justify-between mb-4">
               <div>
                 <div className="flex items-center gap-3 mb-1">
-                  <span className="text-xs px-2 py-0.5 rounded-full bg-gold-500/15 text-gold-400 border border-gold-500/25 font-mono">
-                    GEN {selectedPerson.generation}
+                  <span className={`text-xs px-2 py-0.5 rounded-full border font-mono ${
+                    selectedPerson.generation < 0
+                      ? "bg-blue-500/15 text-blue-400 border-blue-500/25"
+                      : "bg-gold-500/15 text-gold-400 border-gold-500/25"
+                  }`}>
+                    {selectedPerson.generation < 0 ? `DISCOVERED D${Math.abs(selectedPerson.generation)}` : `GEN ${selectedPerson.generation}`}
                   </span>
-                  <span className="text-xs px-2 py-0.5 rounded-full bg-emerald-500/15 text-emerald-400 border border-emerald-500/25 font-mono uppercase">
+                  <span className={`text-xs px-2 py-0.5 rounded-full border font-mono uppercase ${
+                    selectedPerson.evidenceLevel === "verified"
+                      ? "bg-emerald-500/15 text-emerald-400 border-emerald-500/25"
+                      : selectedPerson.evidenceLevel === "supported"
+                      ? "bg-blue-500/15 text-blue-400 border-blue-500/25"
+                      : selectedPerson.evidenceLevel === "probable"
+                      ? "bg-purple-500/15 text-purple-400 border-purple-500/25"
+                      : "bg-orange-500/15 text-orange-400 border-orange-500/25"
+                  }`}>
                     {selectedPerson.evidenceLevel}
                   </span>
+                  {selectedPerson.dataSource !== "user-provided" && (
+                    <span className="text-xs px-2 py-0.5 rounded-full bg-blue-500/15 text-blue-400 border border-blue-500/25 font-mono uppercase">
+                      {selectedPerson.dataSource}
+                    </span>
+                  )}
                 </div>
                 <h3 className="font-display text-2xl text-pearl">{selectedPerson.name}</h3>
                 {selectedPerson.nameBengali && (
@@ -172,6 +205,12 @@ export default function FamilyGraph() {
                 <div className="text-center p-3 rounded-lg bg-white/[0.03] border border-white/[0.06]">
                   <div className="text-xs text-mist mb-1">Born (est.)</div>
                   <div className="text-sm text-pearl font-medium">~{selectedPerson.birthYear}</div>
+                </div>
+              )}
+              {selectedPerson.deathYear && (
+                <div className="text-center p-3 rounded-lg bg-white/[0.03] border border-white/[0.06]">
+                  <div className="text-xs text-mist mb-1">Died (est.)</div>
+                  <div className="text-sm text-pearl font-medium">~{selectedPerson.deathYear}</div>
                 </div>
               )}
               {selectedPerson.occupation && (

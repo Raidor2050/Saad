@@ -13,17 +13,17 @@ export default function AncestralDepthViz() {
       ([entry]) => {
         if (entry.isIntersecting && !isAnimating) {
           setIsAnimating(true);
-          let gen = 0;
-          const interval = setInterval(() => {
-            gen++;
-            setRevealedGen(gen);
-            if (gen >= 6) {
-              clearInterval(interval);
-              setTimeout(() => {
-                setRevealedGen(7);
-              }, 800);
-            }
-          }, 500);
+            let gen = 0;
+            const interval = setInterval(() => {
+              gen++;
+              setRevealedGen(gen);
+              if (gen >= 8) {
+                clearInterval(interval);
+                setTimeout(() => {
+                  setRevealedGen(9);
+                }, 800);
+              }
+            }, 500);
         }
       },
       { threshold: 0.3 }
@@ -40,6 +40,7 @@ export default function AncestralDepthViz() {
     { gen: 4, name: "MD Ashraf Talukder", year: "~1880", era: "British Raj", color: "from-gold-700 to-gold-600" },
     { gen: 5, name: "MD Eida Talukder", year: "~1850", era: "East India Company", color: "from-gold-800 to-gold-700" },
     { gen: 6, name: "Discovery Frontier", year: "1700s-1800s", era: "Pre-Colonial / Colonial Bengal", color: "from-gold-900 to-gold-800" },
+    { gen: 7, name: "Haji Shariatullah Taluqdar", year: "~1781", era: "Mughal / Company Rule", color: "from-blue-700 to-blue-600" },
   ];
 
   return (
@@ -135,25 +136,25 @@ export default function AncestralDepthViz() {
           })}
         </div>
 
-        {revealedGen > 6 && (
+        {revealedGen > 8 && (
           <div className="mt-12 text-center animate-fade-in-up">
             <div className="glass-panel p-8">
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-6">
                 <div>
                   <div className="text-3xl font-display text-gold-400">6+</div>
-                  <div className="text-xs text-mist mt-1">Generations Traced</div>
+                  <div className="text-xs text-mist mt-1">Direct Generations</div>
                 </div>
                 <div>
-                  <div className="text-3xl font-display text-gold-400">233+</div>
+                  <div className="text-3xl font-display text-blue-400">245+</div>
                   <div className="text-xs text-mist mt-1">Years of History</div>
                 </div>
                 <div>
-                  <div className="text-3xl font-display text-gold-400">21</div>
+                  <div className="text-3xl font-display text-gold-400">30</div>
                   <div className="text-xs text-mist mt-1">Sources Analyzed</div>
                 </div>
                 <div>
-                  <div className="text-3xl font-display text-orange-400">1</div>
-                  <div className="text-xs text-mist mt-1">Unresolved Frontier</div>
+                  <div className="text-3xl font-display text-purple-400">8</div>
+                  <div className="text-xs text-mist mt-1">Related Talukders Found</div>
                 </div>
               </div>
 
@@ -162,10 +163,10 @@ export default function AncestralDepthViz() {
               <div className="mt-8">
                 <p className="text-sm text-fog max-w-2xl mx-auto">
                   The investigation has traced the Talukder lineage back to the mid-19th century
-                  through oral tradition and historical research. The Talukdar title connects
-                  this family to a centuries-old landholder class in Bengal. The research
-                  frontier remains active — land records, gazetteers, and archival sources
-                  may extend the lineage further into the 1700s and beyond.
+                  through oral tradition, and discovered related Talukder families reaching to the
+                  late 1700s through OSINT research. Haji Shariatullah Taluqdar (c.1781), founder
+                  of the Faraizi Movement, represents the oldest documented Talukdar from Bengal.
+                  The research frontier remains active.
                 </p>
               </div>
             </div>

@@ -7,12 +7,13 @@ interface PersonNodeData {
   person: Person;
   isSelected: boolean;
   isHighlighted: boolean;
+  isCandidate?: boolean;
   onSelect: () => void;
   onHover: (hovering: boolean) => void;
 }
 
 export default function PersonNode({ data }: NodeProps & { data: PersonNodeData }) {
-  const { person, isSelected, isHighlighted, onSelect, onHover } = data;
+  const { person, isSelected, isHighlighted, isCandidate, onSelect, onHover } = data;
 
   const confidenceColor =
     person.confidence >= 0.9
@@ -27,7 +28,19 @@ export default function PersonNode({ data }: NodeProps & { data: PersonNodeData 
     ? "shadow-lg shadow-gold-500/25 border-gold-400/60"
     : isHighlighted
     ? "shadow-md shadow-gold-500/15 border-gold-500/40"
-    : `border-gold-700/20 hover:border-gold-600/40`;
+    : isCandidate
+    ? "border-blue-700/30 hover:border-blue-600/50"
+    : "border-gold-700/20 hover:border-gold-600/40";
+
+  const genDisplay = person.generation < 0 ? `D${Math.abs(person.generation)}` : `G${person.generation}`;
+
+  const avatarBg = isCandidate
+    ? "bg-gradient-to-br from-blue-600 to-blue-700 text-blue-100"
+    : person.generation === 0
+    ? "bg-gradient-to-br from-gold-500 to-gold-600 text-black"
+    : person.generation <= 2
+    ? "bg-gold-700/40 text-gold-300"
+    : "bg-graphite text-mist";
 
   return (
     <div
@@ -49,15 +62,9 @@ export default function PersonNode({ data }: NodeProps & { data: PersonNodeData 
       >
         <div className="flex items-center gap-3 mb-2">
           <div
-            className={`w-10 h-10 rounded-full flex items-center justify-center text-xs font-mono font-bold ${
-              person.generation === 0
-                ? "bg-gradient-to-br from-gold-500 to-gold-600 text-black"
-                : person.generation <= 2
-                ? "bg-gold-700/40 text-gold-300"
-                : "bg-graphite text-mist"
-            }`}
+            className={`w-10 h-10 rounded-full flex items-center justify-center text-xs font-mono font-bold ${avatarBg}`}
           >
-            G{person.generation}
+            {genDisplay}
           </div>
           <div className="flex-1 min-w-0">
             <div className="text-sm font-medium text-pearl truncate">
@@ -71,10 +78,22 @@ export default function PersonNode({ data }: NodeProps & { data: PersonNodeData 
         </div>
 
         <div className="flex items-center gap-2 mt-2">
-          <span className="text-[10px] px-2 py-0.5 rounded-full bg-emerald-500/15 text-emerald-400 border border-emerald-500/20 font-mono uppercase">
+          <span className={`text-[10px] px-2 py-0.5 rounded-full border font-mono uppercase ${
+            person.evidenceLevel === "verified"
+              ? "bg-emerald-500/15 text-emerald-400 border-emerald-500/20"
+              : person.evidenceLevel === "supported"
+              ? "bg-blue-500/15 text-blue-400 border-blue-500/20"
+              : person.evidenceLevel === "probable"
+              ? "bg-purple-500/15 text-purple-400 border-purple-500/20"
+              : "bg-orange-500/15 text-orange-400 border-orange-500/20"
+          }`}>
             {person.evidenceLevel}
           </span>
-          <span className="text-[10px] px-2 py-0.5 rounded-full bg-blue-500/15 text-blue-400 border border-blue-500/20 font-mono uppercase">
+          <span className={`text-[10px] px-2 py-0.5 rounded-full border font-mono uppercase ${
+            isCandidate
+              ? "bg-blue-500/15 text-blue-400 border-blue-500/20"
+              : "bg-gold-500/15 text-gold-400 border-gold-500/20"
+          }`}>
             {person.dataSource}
           </span>
         </div>
