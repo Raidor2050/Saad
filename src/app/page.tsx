@@ -11,6 +11,7 @@ import SourceExplorer from "@/components/sources/SourceExplorer";
 import FrontierSection from "@/components/frontier/FrontierSection";
 import MethodologySection from "@/components/frontier/MethodologySection";
 import CinematicSection from "@/components/motion/CinematicSection";
+import Carousel3D from "@/components/carousel/Carousel3D";
 import ParticleBackground from "@/components/motion/ParticleBackground";
 
 export default function Home() {
@@ -29,6 +30,8 @@ export default function Home() {
         <FamilyGraph />
         <div className="neon-line max-w-4xl mx-auto" />
         <CinematicSection />
+        <div className="neon-line max-w-4xl mx-auto" />
+        <Carousel3D />
         <div className="neon-line max-w-4xl mx-auto" />
         <TimelineSection />
         <div className="neon-line max-w-4xl mx-auto" />
