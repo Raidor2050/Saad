@@ -19,6 +19,33 @@ import PersonNode from "./PersonNode";
 
 const nodeTypes = { personNode: PersonNode };
 
+const directLine = [
+  "person-saadman",
+  "person-saiful",
+  "person-mazid",
+  "person-abul",
+  "person-ashraf",
+  "person-eida",
+];
+
+const discoveryPeople = [
+  "person-haji-shariatullah",
+  "person-dudu-miyan",
+  "person-abdul-quader",
+  "person-umanath-chowdhury",
+];
+
+const relatedPeople = [
+  "person-abdullah-mahmood",
+  "person-iqbal-hm",
+  "person-anwarul-kabir",
+  "person-abdus-salam",
+  "person-abdur-rouf",
+  "person-rashid-talukder",
+  "person-zakir-talukder",
+  "person-abdul-mazid-college",
+];
+
 export default function FamilyGraph() {
   const { selectedPersonId, setSelectedPerson, highlightedPersonId, setHighlightedPerson } =
     useAncestryStore();
@@ -28,63 +55,95 @@ export default function FamilyGraph() {
     const nodes: Node[] = [];
     const edges: Edge[] = [];
 
-    const genY: Record<number, number> = {};
-    const genCounts: Record<number, number> = {};
+    const nodeW = 220;
+    const nodeH = 90;
+    const vGap = 60;
+    const hGap = 40;
 
-    people.forEach((person) => {
-      const gen = person.generation;
-      if (!(gen in genCounts)) {
-        genCounts[gen] = 0;
-        genY[gen] = gen * 160;
-      }
-      const count = genCounts[gen];
-      const total = people.filter((p) => p.generation === gen).length;
-      const xSpacing = 300;
-      const x = count * xSpacing - ((total - 1) * xSpacing) / 2;
-
-      const isCandidate = person.dataSource === "discovered" || person.dataSource === "candidate";
-
+    directLine.forEach((id, i) => {
+      const person = people.find((p) => p.id === id);
+      if (!person) return;
+      const x = 0;
+      const y = i * (nodeH + vGap);
       nodes.push({
         id: person.id,
         type: "personNode",
-        position: { x, y: genY[gen] },
+        position: { x, y },
         data: {
           person,
           isSelected: person.id === selectedPersonId,
           isHighlighted: person.id === highlightedPersonId,
-          isCandidate,
-          onSelect: () => {
-            setSelectedPerson(person.id === selectedPersonId ? null : person.id);
-          },
-          onHover: (hovering: boolean) => {
-            setHighlightedPerson(hovering ? person.id : null);
-          },
+          isCandidate: false,
+          onSelect: () => setSelectedPerson(person.id === selectedPersonId ? null : person.id),
+          onHover: (h: boolean) => setHighlightedPerson(h ? person.id : null),
         },
       });
-      genCounts[gen]++;
     });
 
-    relationships.forEach((rel) => {
-      const isHighlighted =
-        rel.fromPersonId === highlightedPersonId ||
-        rel.toPersonId === highlightedPersonId;
-
+    for (let i = 0; i < directLine.length - 1; i++) {
+      const parent = directLine[i];
+      const child = directLine[i + 1];
+      const rel = relationships.find(
+        (r) => r.fromPersonId === child && r.toPersonId === parent
+      );
+      const isHighlighted = parent === highlightedPersonId || child === highlightedPersonId;
       edges.push({
-        id: rel.id,
-        source: rel.toPersonId,
-        target: rel.fromPersonId,
+        id: rel?.id || `edge-${parent}-${child}`,
+        source: parent,
+        target: child,
         type: "smoothstep",
         animated: isHighlighted,
         style: {
-          stroke: isHighlighted ? "#e6a817" : "#996600",
+          stroke: isHighlighted ? "#e6a817" : "#d4940a",
           strokeWidth: isHighlighted ? 3 : 2,
-          opacity: isHighlighted ? 1 : 0.5,
+          opacity: isHighlighted ? 1 : 0.6,
         },
-        markerEnd: {
-          type: MarkerType.ArrowClosed,
-          color: isHighlighted ? "#e6a817" : "#996600",
-          width: 16,
-          height: 16,
+      });
+    }
+
+    const discoveryStartY = (directLine.length - 1) * (nodeH + vGap);
+    const discoveryRowY = discoveryStartY + nodeH + vGap + 30;
+    const discoveryTotalW = discoveryPeople.length * nodeW + (discoveryPeople.length - 1) * hGap;
+    const discoveryStartX = -discoveryTotalW / 2;
+
+    discoveryPeople.forEach((id, i) => {
+      const person = people.find((p) => p.id === id);
+      if (!person) return;
+      const x = discoveryStartX + i * (nodeW + hGap);
+      nodes.push({
+        id: person.id,
+        type: "personNode",
+        position: { x, y: discoveryRowY },
+        data: {
+          person,
+          isSelected: person.id === selectedPersonId,
+          isHighlighted: person.id === highlightedPersonId,
+          isCandidate: true,
+          onSelect: () => setSelectedPerson(person.id === selectedPersonId ? null : person.id),
+          onHover: (h: boolean) => setHighlightedPerson(h ? person.id : null),
+        },
+      });
+    });
+
+    const relatedRowY = discoveryRowY + nodeH + vGap + 30;
+    const relatedTotalW = relatedPeople.length * nodeW + (relatedPeople.length - 1) * hGap;
+    const relatedStartX = -relatedTotalW / 2;
+
+    relatedPeople.forEach((id, i) => {
+      const person = people.find((p) => p.id === id);
+      if (!person) return;
+      const x = relatedStartX + i * (nodeW + hGap);
+      nodes.push({
+        id: person.id,
+        type: "personNode",
+        position: { x, y: relatedRowY },
+        data: {
+          person,
+          isSelected: person.id === selectedPersonId,
+          isHighlighted: person.id === highlightedPersonId,
+          isCandidate: true,
+          onSelect: () => setSelectedPerson(person.id === selectedPersonId ? null : person.id),
+          onHover: (h: boolean) => setHighlightedPerson(h ? person.id : null),
         },
       });
     });
@@ -107,29 +166,29 @@ export default function FamilyGraph() {
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-10">
           <h2 className="font-display text-3xl sm:text-4xl text-pearl mb-3">
-            Interactive <span className="gold-text">Family Graph</span>
+            Family <span className="gold-text">Tree</span>
           </h2>
           <p className="text-sm text-mist max-w-xl mx-auto">
-            Explore the direct ancestral line and related Talukder families discovered through OSINT research. Click any person to see details and evidence.
+            The Talukder lineage of Saadman Saif — 6 verified generations tracing back to the Bengal Presidency.
           </p>
         </div>
 
-        <div className="flex flex-wrap items-center justify-center gap-3 mb-4 text-xs">
+        <div className="flex flex-wrap justify-center gap-3 mb-6 text-xs">
           <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-gold-500/10 border border-gold-500/20">
             <div className="w-2 h-2 rounded-full bg-gold-400" />
-            <span className="text-gold-400">Direct Ancestry (Verified)</span>
+            <span className="text-gold-400">Direct Lineage</span>
           </div>
           <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-blue-500/10 border border-blue-500/20">
             <div className="w-2 h-2 rounded-full bg-blue-400" />
-            <span className="text-blue-400">Related Talukders (Discovered)</span>
+            <span className="text-blue-400">Discovery Frontier</span>
           </div>
           <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-purple-500/10 border border-purple-500/20">
             <div className="w-2 h-2 rounded-full bg-purple-400" />
-            <span className="text-purple-400">Historical Context</span>
+            <span className="text-purple-400">Related Talukders</span>
           </div>
         </div>
 
-        <div className="glass-panel overflow-hidden" style={{ height: "700px" }}>
+        <div className="glass-panel overflow-hidden" style={{ height: "900px" }}>
           <ReactFlow
             nodes={nodes}
             edges={edges}
@@ -137,13 +196,13 @@ export default function FamilyGraph() {
             onEdgesChange={onEdgesChange}
             nodeTypes={nodeTypes}
             fitView
-            fitViewOptions={{ padding: 0.3 }}
+            fitViewOptions={{ padding: 0.2 }}
             proOptions={{ hideAttribution: true }}
-            minZoom={0.3}
+            minZoom={0.2}
             maxZoom={2}
             className="bg-void"
           >
-            <Background color="rgba(212, 148, 10, 0.05)" gap={40} />
+            <Background color="rgba(212, 148, 10, 0.04)" gap={50} />
             <Controls
               className="!bg-charcoal !border-gold-700/30 !rounded-lg"
               showInteractive={false}
@@ -177,34 +236,29 @@ export default function FamilyGraph() {
                 )}
                 <div>
                   <div className="flex items-center gap-3 mb-1">
-                  <span className={`text-xs px-2 py-0.5 rounded-full border font-mono ${
-                    selectedPerson.generation < 0
-                      ? "bg-blue-500/15 text-blue-400 border-blue-500/25"
-                      : "bg-gold-500/15 text-gold-400 border-gold-500/25"
-                  }`}>
-                    {selectedPerson.generation < 0 ? `DISCOVERED D${Math.abs(selectedPerson.generation)}` : `GEN ${selectedPerson.generation}`}
-                  </span>
-                  <span className={`text-xs px-2 py-0.5 rounded-full border font-mono uppercase ${
-                    selectedPerson.evidenceLevel === "verified"
-                      ? "bg-emerald-500/15 text-emerald-400 border-emerald-500/25"
-                      : selectedPerson.evidenceLevel === "supported"
-                      ? "bg-blue-500/15 text-blue-400 border-blue-500/25"
-                      : selectedPerson.evidenceLevel === "probable"
-                      ? "bg-purple-500/15 text-purple-400 border-purple-500/25"
-                      : "bg-orange-500/15 text-orange-400 border-orange-500/25"
-                  }`}>
-                    {selectedPerson.evidenceLevel}
-                  </span>
-                  {selectedPerson.dataSource !== "user-provided" && (
-                    <span className="text-xs px-2 py-0.5 rounded-full bg-blue-500/15 text-blue-400 border border-blue-500/25 font-mono uppercase">
-                      {selectedPerson.dataSource}
+                    <span className={`text-xs px-2 py-0.5 rounded-full border font-mono ${
+                      selectedPerson.generation < 0
+                        ? "bg-blue-500/15 text-blue-400 border-blue-500/25"
+                        : "bg-gold-500/15 text-gold-400 border-gold-500/25"
+                    }`}>
+                      {selectedPerson.generation < 0 ? `DISCOVERED` : selectedPerson.generation === 0 ? "SUBJECT" : `GEN ${selectedPerson.generation}`}
                     </span>
+                    <span className={`text-xs px-2 py-0.5 rounded-full border font-mono uppercase ${
+                      selectedPerson.evidenceLevel === "verified"
+                        ? "bg-emerald-500/15 text-emerald-400 border-emerald-500/25"
+                        : selectedPerson.evidenceLevel === "supported"
+                        ? "bg-blue-500/15 text-blue-400 border-blue-500/25"
+                        : selectedPerson.evidenceLevel === "probable"
+                        ? "bg-purple-500/15 text-purple-400 border-purple-500/25"
+                        : "bg-orange-500/15 text-orange-400 border-orange-500/25"
+                    }`}>
+                      {selectedPerson.evidenceLevel}
+                    </span>
+                  </div>
+                  <h3 className="font-display text-2xl text-pearl">{selectedPerson.name}</h3>
+                  {selectedPerson.nameBengali && (
+                    <p className="text-sm text-mist">{selectedPerson.nameBengali}</p>
                   )}
-                </div>
-                <h3 className="font-display text-2xl text-pearl">{selectedPerson.name}</h3>
-                {selectedPerson.nameBengali && (
-                  <p className="text-sm text-mist">{selectedPerson.nameBengali}</p>
-                )}
                 </div>
               </div>
               <button
@@ -220,14 +274,14 @@ export default function FamilyGraph() {
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-4">
               {selectedPerson.birthYear && (
                 <div className="text-center p-3 rounded-lg bg-white/[0.03] border border-white/[0.06]">
-                  <div className="text-xs text-mist mb-1">Born (est.)</div>
+                  <div className="text-xs text-mist mb-1">Born</div>
                   <div className="text-sm text-pearl font-medium">~{selectedPerson.birthYear}</div>
                 </div>
               )}
               {selectedPerson.deathYear && (
                 <div className="text-center p-3 rounded-lg bg-white/[0.03] border border-white/[0.06]">
-                  <div className="text-xs text-mist mb-1">Died (est.)</div>
-                  <div className="text-sm text-pearl font-medium">~{selectedPerson.deathYear}</div>
+                  <div className="text-xs text-mist mb-1">Died</div>
+                  <div className="text-sm text-pearl font-medium">{selectedPerson.deathYear}</div>
                 </div>
               )}
               {selectedPerson.occupation && (
