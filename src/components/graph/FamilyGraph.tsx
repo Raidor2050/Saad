@@ -159,8 +159,24 @@ export default function FamilyGraph() {
         {selectedPerson && (
           <div className="mt-6 glass-panel-strong p-6 animate-fade-in-up">
             <div className="flex items-start justify-between mb-4">
-              <div>
-                <div className="flex items-center gap-3 mb-1">
+              <div className="flex items-start gap-4">
+                {selectedPerson.imageUrl ? (
+                  <div className="w-20 h-20 rounded-xl overflow-hidden flex-shrink-0 border-2 border-gold-500/30">
+                    <img
+                      src={selectedPerson.imageUrl}
+                      alt={selectedPerson.name}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                ) : (
+                  <div className="w-20 h-20 rounded-xl bg-gradient-to-br from-gold-700/40 to-gold-800/40 flex items-center justify-center border border-gold-700/30 flex-shrink-0">
+                    <span className="text-lg font-mono font-bold text-gold-400">
+                      {selectedPerson.generation < 0 ? `D${Math.abs(selectedPerson.generation)}` : `G${selectedPerson.generation}`}
+                    </span>
+                  </div>
+                )}
+                <div>
+                  <div className="flex items-center gap-3 mb-1">
                   <span className={`text-xs px-2 py-0.5 rounded-full border font-mono ${
                     selectedPerson.generation < 0
                       ? "bg-blue-500/15 text-blue-400 border-blue-500/25"
@@ -189,6 +205,7 @@ export default function FamilyGraph() {
                 {selectedPerson.nameBengali && (
                   <p className="text-sm text-mist">{selectedPerson.nameBengali}</p>
                 )}
+                </div>
               </div>
               <button
                 onClick={() => setSelectedPerson(null)}

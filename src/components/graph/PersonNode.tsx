@@ -61,11 +61,27 @@ export default function PersonNode({ data }: NodeProps & { data: PersonNodeData 
         className={`min-w-[200px] rounded-xl bg-charcoal/90 backdrop-blur-sm border p-4 transition-all duration-300 ${glowClass} ${confidenceColor} border-2`}
       >
         <div className="flex items-center gap-3 mb-2">
-          <div
-            className={`w-10 h-10 rounded-full flex items-center justify-center text-xs font-mono font-bold ${avatarBg}`}
-          >
-            {genDisplay}
-          </div>
+          {person.imageUrl ? (
+            <div className={`w-10 h-10 rounded-full overflow-hidden flex-shrink-0 border-2 ${isCandidate ? "border-blue-500/40" : "border-gold-500/40"}`}>
+              <img
+                src={person.imageUrl}
+                alt={person.name}
+                className="w-full h-full object-cover"
+                onError={(e) => {
+                  const target = e.target as HTMLImageElement;
+                  target.style.display = 'none';
+                  target.parentElement!.classList.add('flex', 'items-center', 'justify-center');
+                  target.parentElement!.innerHTML = `<span class="text-xs font-mono font-bold ${avatarBg} w-full h-full flex items-center justify-center">${genDisplay}</span>`;
+                }}
+              />
+            </div>
+          ) : (
+            <div
+              className={`w-10 h-10 rounded-full flex items-center justify-center text-xs font-mono font-bold ${avatarBg}`}
+            >
+              {genDisplay}
+            </div>
+          )}
           <div className="flex-1 min-w-0">
             <div className="text-sm font-medium text-pearl truncate">
               {person.name}
