@@ -355,6 +355,7 @@ export const people: Person[] = [
     confidence: 1.0,
     location: "Bangladesh",
     notes: "Subject of the ancestry research. S/O AKM Saiful Islam.",
+    imageUrl: "/Saad/images/saadman-saif.svg",
   },
   {
     id: "person-saiful",
@@ -459,7 +460,7 @@ export const people: Person[] = [
     location: "Faridpur, Bengal Presidency",
     occupation: "Taluqdar / Religious Leader",
     notes: "Founder of the Faraizi Movement (1818). A Taluqdar from Faridpur district who led an Islamic reform movement against Hindu landlord oppression. Led ~100,000 followers. NOT a confirmed direct ancestor but a documented Taluqdar from Bengal during the same era as the family lineage.",
-    imageUrl: "/images/haji-shariatullah.jpg",
+    imageUrl: "/Saad/images/haji-shariatullah.jpg",
   },
   {
     id: "person-dudu-miyan",
@@ -498,7 +499,7 @@ export const people: Person[] = [
     location: "Mymensingh, Bangladesh",
     occupation: "Politician / Minister",
     notes: "Bangladesh Nationalist Party politician from Mymensingh. Served as Minister of Land Revenue and Minister of Works. Elected MP in 1979 and 1986 from Mymensingh-4. Notable Talukder from the same Mymensingh region where the family was historically based.",
-    imageUrl: "/images/abdullah-al-mahmood.jpg",
+    imageUrl: "/Saad/images/abdullah-al-mahmood.jpg",
   },
   {
     id: "person-iqbal-hm",
@@ -517,7 +518,7 @@ export const people: Person[] = [
     location: "Mymensingh, Bangladesh",
     occupation: "Politician / Minister",
     notes: "Bangladesh Awami League politician. Currently serves as Minister of Religious Affairs. Former State Minister for Disaster Management and Relief. Elected MP from Mymensingh-4 in 2014, 2018, 2024. Key Talukder political figure from Mymensingh.",
-    imageUrl: "/images/iqbal-hassan-mahmood.jpg",
+    imageUrl: "/Saad/images/iqbal-hassan-mahmood.jpg",
   },
   {
     id: "person-abdur-rouf",
@@ -536,7 +537,7 @@ export const people: Person[] = [
     location: "Dhaka, Bangladesh",
     occupation: "Central Bank Governor",
     notes: "Former Governor of Bangladesh Bank (2022-2025). Senior banker and economist. Notable Talukder figure in Bangladesh's financial sector.",
-    imageUrl: "/images/abdur-rouf-talukder.jpg",
+    imageUrl: "/Saad/images/abdur-rouf-talukder.jpg",
   },
   {
     id: "person-rashid-talukder",
@@ -556,7 +557,7 @@ export const people: Person[] = [
     location: "Dhaka, Bangladesh",
     occupation: "Photojournalist",
     notes: "Renowned Bangladeshi photojournalist. One of the founding members of Drik Picture Library. His photographs documented the Bangladesh Liberation War and cultural heritage. Notable Talukder in arts/culture.",
-    imageUrl: "/images/rashid-talukder.jpg",
+    imageUrl: "/Saad/images/rashid-talukder.jpg",
   },
   {
     id: "person-zakir-talukder",
@@ -575,7 +576,7 @@ export const people: Person[] = [
     location: "Bangladesh",
     occupation: "Writer",
     notes: "Bangladeshi writer and literary figure. Notable Talukder in Bengali literature.",
-    imageUrl: "/images/zakir-talukder.jpg",
+    imageUrl: "/Saad/images/zakir-talukder.jpg",
   },
   {
     id: "person-abdul-mazid-college",
