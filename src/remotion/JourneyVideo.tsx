@@ -29,6 +29,7 @@ const relatedTalukders = [
   "person-abdullah-mahmood",
   "person-iqbal-hm",
   "person-anwarul-kabir",
+  "person-abdus-salam",
   "person-abdur-rouf",
   "person-rashid-talukder",
   "person-zakir-talukder",
@@ -763,7 +764,7 @@ export const JourneyVideo: React.FC = () => {
                 marginBottom: 12,
               }}
             >
-              245+ Years · 18 People · 35 Sources
+              245+ Years · 19 People · 36 Sources
             </div>
             <div
               style={{
