@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0d1117"/>
+      <stop offset="100%" stop-color="#1a3a5c"/>
+    </linearGradient>
+  </defs>
+  <circle cx="100" cy="100" r="100" fill="url(#bg)"/>
+  <path d="M60 55 L60 100 Q60 115 75 115 L125 115 Q140 115 140 100 L140 55 Z" fill="none" stroke="#4a90d9" stroke-width="1.5" opacity="0.6"/>
+  <path d="M65 60 L135 60 M65 68 L135 68 M65 76 L110 76 M65 84 L120 84" stroke="#4a90d9" stroke-width="0.5" opacity="0.3"/>
+  <path d="M75 55 L100 40 L125 55" fill="none" stroke="#4a90d9" stroke-width="1" opacity="0.5"/>
+  <circle cx="100" cy="135" r="12" fill="none" stroke="#d4940a" stroke-width="1.5" opacity="0.7"/>
+  <path d="M94 135 L100 141 L106 135" fill="none" stroke="#d4940a" stroke-width="1" opacity="0.6"/>
+  <text x="100" y="170" text-anchor="middle" font-family="Georgia, serif" font-size="8" fill="#4a90d9" opacity="0.9">Maj. Gen. Anwarul Kabir</text>
+  <text x="100" y="182" text-anchor="middle" font-family="serif" font-size="7" fill="#888">Talukdar • MP Jamalpur-4</text>
+  <text x="100" y="194" text-anchor="middle" font-family="serif" font-size="6" fill="#666">1944–2020 • BNP</text>
+</svg>

@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1a1a2e"/>
+      <stop offset="100%" stop-color="#2d3436"/>
+    </linearGradient>
+  </defs>
+  <circle cx="100" cy="100" r="100" fill="url(#bg)"/>
+  <rect x="65" y="50" width="70" height="60" rx="3" fill="none" stroke="#a29bfe" stroke-width="1.2" opacity="0.6"/>
+  <path d="M70 58 L90 58 M70 65 L125 65 M70 72 L110 72 M70 79 L120 79 M70 86 L105 86" stroke="#a29bfe" stroke-width="0.5" opacity="0.3"/>
+  <path d="M95 110 L105 110 L105 130 L95 130 Z" fill="none" stroke="#a29bfe" stroke-width="0.8" opacity="0.4"/>
+  <circle cx="100" cy="145" r="6" fill="none" stroke="#a29bfe" stroke-width="0.8" opacity="0.4"/>
+  <text x="100" y="172" text-anchor="middle" font-family="Georgia, serif" font-size="8" fill="#a29bfe" opacity="0.9">Dr. Abdul Mazid</text>
+  <text x="100" y="184" text-anchor="middle" font-family="serif" font-size="7" fill="#888">Talukder • Educator</text>
+  <text x="100" y="196" text-anchor="middle" font-family="serif" font-size="6" fill="#666">1930–2000 • Jamalpur</text>
+</svg>
