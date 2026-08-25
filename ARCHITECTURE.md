@@ -2,7 +2,7 @@
 
 ## System Overview
 
-The SaadMan Saif Deep Ancestry Platform is a Next.js 16 web application with a modular architecture designed for genealogy research, visualization, and interactive exploration.
+The Saadman Saif Deep Ancestry Platform is a Next.js 16 web application with a modular architecture designed for genealogy research, visualization, and interactive exploration.
 
 ## Directory Structure
 

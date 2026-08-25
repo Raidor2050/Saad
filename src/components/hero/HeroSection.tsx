@@ -110,7 +110,7 @@ export default function HeroSection() {
 
         <p className="text-lg sm:text-xl text-fog max-w-3xl mx-auto mb-4 font-light leading-relaxed">
           Investigating the ancestry of{" "}
-          <span className="text-gold-400 font-medium">SaadMan Saif</span>{" "}
+          <span className="text-gold-400 font-medium">Saadman Saif</span>{" "}
           through genealogy databases, archival records, and historical research.
         </p>
         <p className="text-sm text-mist max-w-2xl mx-auto mb-12 font-light">
@@ -148,7 +148,7 @@ export default function HeroSection() {
             </div>
             <div className="flex flex-col items-center gap-0">
               {[
-                { name: "SaadMan Saif", gen: 0, year: "~2000", role: "Subject" },
+                { name: "Saadman Saif", gen: 0, year: "~2000", role: "Subject" },
                 { name: "AKM Saiful Islam", gen: 1, year: "~1970", role: "Father" },
                 { name: "MD Abdul Mazid Talukder", gen: 2, year: "~1940", role: "Grandfather" },
                 { name: "MD Abul Hossain Talukder", gen: 3, year: "~1910", role: "Great-Grandfather" },

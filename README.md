@@ -1,6 +1,6 @@
-# SaadMan Saif — Deep Ancestry Discovery Platform
+# Saadman Saif — Deep Ancestry Discovery Platform
 
-A deep ancestry investigation and visualization system centered on **SaadMan Saif** and the **Talukder** family lineage, tracing back through British colonial Bengal using genealogy databases, archival records, and historical research.
+A deep ancestry investigation and visualization system centered on **Saadman Saif** and the **Talukder** family lineage, tracing back through British colonial Bengal using genealogy databases, archival records, and historical research.
 
 ## Live Site
 
@@ -10,14 +10,14 @@ A deep ancestry investigation and visualization system centered on **SaadMan Sai
 
 This is NOT a generic family tree website. This is a deep ancestry investigation that asks:
 
-> **How far back can we trace the lineage of SaadMan Saif?**
+> **How far back can we trace the lineage of Saadman Saif?**
 
 Starting with 6 known generations of the Talukder family, the platform researches legitimate public sources to extend the ancestral line as far back as evidence allows.
 
 ## The Ancestral Line
 
 ```
-SaadMan Saif (Gen 0)
+Saadman Saif (Gen 0)
       ↓
 AKM Saiful Islam (Gen 1)
       ↓
@@ -81,4 +81,4 @@ npm run build
 
 ## License
 
-Private — SaadMan Saif Ancestry Research
+Private — Saadman Saif Ancestry Research

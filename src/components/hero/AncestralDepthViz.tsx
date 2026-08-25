@@ -33,7 +33,7 @@ export default function AncestralDepthViz() {
   }, [isAnimating]);
 
   const generations = [
-    { gen: 0, name: "SaadMan Saif", year: "~2000", era: "Digital Age", color: "from-gold-500 to-gold-400" },
+    { gen: 0, name: "Saadman Saif", year: "~2000", era: "Digital Age", color: "from-gold-500 to-gold-400" },
     { gen: 1, name: "AKM Saiful Islam", year: "~1970", era: "Modern Bangladesh", color: "from-gold-600 to-gold-500" },
     { gen: 2, name: "MD Abdul Mazid Talukder", year: "~1940", era: "Late Colonial / Partition", color: "from-gold-600 to-gold-500" },
     { gen: 3, name: "MD Abul Hossain Talukder", year: "~1910", era: "British Raj", color: "from-gold-700 to-gold-600" },

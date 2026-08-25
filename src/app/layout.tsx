@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "SaadMan Saif - Deep Ancestry Discovery",
+  title: "Saadman Saif - Deep Ancestry Discovery",
   description:
-    "How far back can we trace the lineage of SaadMan Saif? A deep ancestry investigation into the Talukder family using genealogy databases, archival records, and historical research.",
+    "How far back can we trace the lineage of Saadman Saif? A deep ancestry investigation into the Talukder family using genealogy databases, archival records, and historical research.",
   keywords: [
     "genealogy",
     "ancestry",

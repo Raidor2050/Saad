@@ -13,7 +13,7 @@ export default function RemotionPlayer() {
         ref={playerRef}
         component={JourneyVideo}
         inputProps={{}}
-        durationInFrames={450}
+        durationInFrames={1155}
         fps={30}
         compositionWidth={1920}
         compositionHeight={1080}

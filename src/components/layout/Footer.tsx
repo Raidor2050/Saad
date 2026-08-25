@@ -74,7 +74,7 @@ export default function Footer() {
 
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="text-xs text-mist">
-            © 2026 SaadMan Saif Ancestry Research. All rights reserved.
+            © 2026 Saadman Saif Ancestry Research. All rights reserved.
           </div>
           <div className="flex items-center gap-4">
             <span className="text-[10px] text-mist font-mono">
