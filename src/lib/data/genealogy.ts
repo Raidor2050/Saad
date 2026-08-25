@@ -382,6 +382,7 @@ export const people: Person[] = [
     confidence: 1.0,
     location: "Bangladesh",
     notes: "Father of Saadman Saif. S/O MD Abdul Mazid Talukder.",
+    imageUrl: "/Saad/images/akm-saiful-islam.svg",
   },
   {
     id: "person-mazid",
@@ -399,6 +400,7 @@ export const people: Person[] = [
     location: "Bangladesh",
     occupation: "Landowner / Talukdar",
     notes: "Grandfather of Saadman Saif. The Talukder surname connects to a hereditary landholder tradition in Bengal.",
+    imageUrl: "/Saad/images/md-abdul-mazid.svg",
   },
   {
     id: "person-abul",
@@ -416,6 +418,7 @@ export const people: Person[] = [
     location: "Bangladesh",
     occupation: "Landowner / Talukdar",
     notes: "Great-grandfather of Saadman Saif.",
+    imageUrl: "/Saad/images/md-abul-hossain.svg",
   },
   {
     id: "person-ashraf",
@@ -433,6 +436,7 @@ export const people: Person[] = [
     location: "Bangladesh",
     occupation: "Landowner / Talukdar",
     notes: "Great-great-grandfather of Saadman Saif.",
+    imageUrl: "/Saad/images/md-ashraf.svg",
   },
   {
     id: "person-eida",
@@ -451,6 +455,7 @@ export const people: Person[] = [
     location: "Bengal Presidency, British India",
     occupation: "Landowner / Talukdar",
     notes: "Oldest known direct ancestor. The research frontier begins here. The Talukdar title indicates hereditary landholding status in Bengal.",
+    imageUrl: "/Saad/images/md-eida-talukder.svg",
   },
   {
     id: "person-haji-shariatullah",
@@ -490,6 +495,7 @@ export const people: Person[] = [
     location: "Faridpur, Bengal Presidency",
     occupation: "Taluqdar / Movement Leader",
     notes: "Son of Haji Shariatullah. Continued the Faraizi Movement after his father's death. Led peasant resistance against zamindari exploitation. Died 1862. Another documented Talukdar lineage from Bengal.",
+    imageUrl: "/Saad/images/dudu-miyan.svg",
   },
   {
     id: "person-abdullah-mahmood",
@@ -606,6 +612,7 @@ export const people: Person[] = [
     location: "Jamalpur, Mymensingh Division",
     occupation: "Educator / Public Figure",
     notes: "Dr. Abdul Mazid Talukder Degree College in Madargati, Jamalpur is named after this person. Shares the same name as Saadman's grandfather (MD Abdul Mazid Talukder). Could indicate a relative or namesake in the Mymensingh region.",
+    imageUrl: "/Saad/images/dr-abdul-mazid.svg",
   },
   {
     id: "person-anwarul-kabir",
@@ -624,6 +631,7 @@ export const people: Person[] = [
     location: "Jamalpur, Mymensingh Division",
     occupation: "Politician / MP",
     notes: "Former MP of Jamalpur-4 (Jhikargacha-Jamalpur Sadar). BNP politician. Died February 24, 2020. Son Anowar Hossain Talukdar is BNP Vice-Chairman; daughter Kobita Talukdar. Jamalpur is in Mymensingh Division — the same region as Saadman's family.",
+    imageUrl: "/Saad/images/anwarul-kabir.svg",
   },
   {
     id: "person-abdul-quader",
@@ -643,6 +651,7 @@ export const people: Person[] = [
     location: "Mymensingh District, Dhaka, Bangladesh",
     occupation: "Landowner / Talukdar",
     notes: "Found in Ancestry.com Mymensingh District records. Born 1914, died 1994. Spouse: Jasimun Nesa. Birth year places him in the same generational cohort as MD Eida Talukder's children. Mymensingh District is the ancestral region of Saadman's family.",
+    imageUrl: "/Saad/images/abdul-quader.svg",
   },
   {
     id: "person-umanath-chowdhury",
@@ -662,6 +671,7 @@ export const people: Person[] = [
     location: "Umanathpur, Mymensingh District",
     occupation: "Talukdar / Landowner",
     notes: "A Talukdar who established the village of Umanathpur in Mymensingh District in 1916. Named the village after himself. Documented in the Mymensingh District Gazetteer (1917). His Talukdar status and Mymensingh location make him a geographically relevant contemporary of the family lineage.",
+    imageUrl: "/Saad/images/umanath-chowdhury.svg",
   },
   {
     id: "person-abdus-salam",
